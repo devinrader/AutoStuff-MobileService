@@ -1,11 +1,28 @@
+var twilio = require('twilio');
+
 exports.post = function(request, response) {
-    // Use "request.service" to access features of your mobile service, e.g.:
-    //   var tables = request.service.tables;
-    //   var push = request.service.push;
+    
+    response.set('Content-Type', 'text/xml');
 
-    response.send(statusCodes.OK, { message : 'Hello World!' });
-};
-
-exports.get = function(request, response) {
-    response.send(statusCodes.OK, { message : 'Hello World!' });
+    var resp = new twilio.TwimlResponse();
+    var employeesTable = request.service.tables.getTable('employees');
+    var callerid = request.param('From'); 
+    
+    employeesTable.Where({
+        ID: callerid
+    }).read({
+        success: function(results) {            
+            if (results.length > 0) {                
+                resp.say('Thank you for calling the Auto Stuff employee schedule.');
+                resp.gather({ timeout:30, action: '' }, function() {
+                    this.say('Please enter your employee ID');
+                });
+            } else {
+                console.log('Unknown caller id \'%s\'', callerid);
+                resp.say({voice:'woman'}, 'ahoy hoy! Testing Twilio and node.js');
+            }
+            
+            response.send(200, resp.toString());
+        }
+    });
 };
