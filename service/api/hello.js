@@ -16,9 +16,9 @@ exports.post = function (request, response) {
     }).read({
         success: function (results) {
             if (results.length > 0) {
-                this.say('Your next shift begins on %s and ends %s');
+                resp.say('Your next shift begins on %s and ends %s');
             } else {
-                this.say('I\'m sorry.  I could not find that I D');
+                resp.say('I\'m sorry.  I could not find that I D');
                 resp.hangup();
             }
 
