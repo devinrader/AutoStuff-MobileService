@@ -12,15 +12,15 @@ exports.get = function(request, response) {
         ID: callerid
     }).read({
         success: function(results) {            
-    //        if (results.length > 0) {                
+            if (results.length > 0) {                
                 resp.say('Thank you for calling the Auto Stuff employee schedule.');
-    //            resp.gather({ timeout:30, action: '' }, function() {
-    //                this.say('Please enter your employee ID');
-    //            });
-    //        } else {
-    //            console.log('Unknown caller id \'%s\'', callerid);
-    //            resp.say({voice:'woman'}, 'ahoy hoy! Testing Twilio and node.js');
-    //        }
+                resp.gather({ timeout:30, action: '' }, function() {
+                    this.say('Please enter your employee ID');
+                });
+            } else {
+                console.log('Unknown caller id \'%s\'', callerid);
+                resp.say({voice:'woman'}, 'ahoy hoy! Testing Twilio and node.js');
+            }
             
             response.send(200, resp.toString());
         },
@@ -29,7 +29,5 @@ exports.get = function(request, response) {
             response.send(404, err);
         }
     });
-
-    //response.send(200, "OK");
 };
 
