@@ -8,6 +8,8 @@ exports.get = function(request, response) {
     var employeesTable = request.service.tables.getTable('employees');
     var callerid = request.param('From'); 
     
+    console.log(callerid);
+
     employeesTable.where({
         phoneNumber: callerid
     }).read({
