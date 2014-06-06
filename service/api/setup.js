@@ -4,7 +4,7 @@
 
     employeesTable.insert({phoneNumber: '+19102369959'}, {
         success: function (results) {
-            response.send(200, resp.toString());
+            response.send(200, "OK");
         },
         error: function (err) {
             console.error(err);
