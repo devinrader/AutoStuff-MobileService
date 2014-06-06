@@ -1,10 +1,10 @@
-//var twilio = require('twilio');
+var twilio = require('twilio');
 
 exports.get = function(request, response) {
     
     response.set('Content-Type', 'text/xml');
 
-    //var resp = new twilio.TwimlResponse();
+    var resp = new twilio.TwimlResponse();
     //var employeesTable = request.service.tables.getTable('employees');
     //var callerid = request.param('From'); 
     
