@@ -25,5 +25,7 @@ exports.get = function(request, response) {
     //        response.send(200, resp.toString());
     //    }
     //});
+
+    response.send(200, "OK");
 };
 
