@@ -1,36 +1,5 @@
 var twilio = require('twilio');
 
-exports.post = function (request, response) {
-
-    response.set('Content-Type', 'text/xml');
-
-    var resp = new twilio.TwimlResponse();
-    var employeesTable = request.service.tables.getTable('employees');
-    var callerid = request.param('From');
-    var digits = request.param('Digits');
-
-    console.log('Digits: %s', digits);
-
-    employeesTable.where({
-        ID: digits
-    }).read({
-        success: function (results) {
-            if (results.length > 0) {
-                resp.say('Your next shift begins on %s and ends %s');
-            } else {
-                resp.say('I\'m sorry.  I could not find that I D');
-                resp.hangup();
-            }
-
-            response.send(200, resp.toString());
-        },
-        error: function (err) {
-            console.error(err);
-            response.send(404, err);
-        }
-    });
-};
-
 exports.get = function (request, response) {
     
     response.set('Content-Type', 'text/xml');
@@ -64,4 +33,34 @@ exports.get = function (request, response) {
     });
 };
 
+exports.post = function (request, response) {
+
+    response.set('Content-Type', 'text/xml');
+
+    var resp = new twilio.TwimlResponse();
+    var employeesTable = request.service.tables.getTable('employees');
+    var callerid = request.param('From');
+    var digits = request.param('Digits');
+
+    console.log('Digits: %s', digits);
+
+    employeesTable.where({
+        employeeid: digits
+    }).read({
+        success: function (results) {
+            if (results.length > 0) {
+                resp.say('Your next shift begins on %s and ends %s');
+            } else {
+                resp.say('I\'m sorry.  I could not find that I D');
+                resp.hangup();
+            }
+
+            response.send(200, resp.toString());
+        },
+        error: function (err) {
+            console.error(err);
+            response.send(404, err);
+        }
+    });
+};
 
