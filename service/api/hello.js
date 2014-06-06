@@ -6,7 +6,7 @@ exports.get = function(request, response) {
 
     var resp = new twilio.TwimlResponse();
     //var employeesTable = request.service.tables.getTable('employees');
-    //var callerid = request.param('From'); 
+    var callerid = request.param('From'); 
     
     //employeesTable.Where({
     //    ID: callerid
