@@ -13,7 +13,7 @@ exports.get = function(request, response) {
     //}).read({
     //    success: function(results) {            
     //        if (results.length > 0) {                
-    //            resp.say('Thank you for calling the Auto Stuff employee schedule.');
+                resp.say('Thank you for calling the Auto Stuff employee schedule.');
     //            resp.gather({ timeout:30, action: '' }, function() {
     //                this.say('Please enter your employee ID');
     //            });
@@ -22,10 +22,10 @@ exports.get = function(request, response) {
     //            resp.say({voice:'woman'}, 'ahoy hoy! Testing Twilio and node.js');
     //        }
             
-    //        response.send(200, resp.toString());
+            response.send(200, resp.toString());
     //    }
     //});
 
-    response.send(200, "OK");
+    //response.send(200, "OK");
 };
 
