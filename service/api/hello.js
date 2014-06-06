@@ -8,7 +8,7 @@ exports.get = function(request, response) {
     var employeesTable = request.service.tables.getTable('employees');
     var callerid = request.param('From'); 
     
-    employeesTable.Where({
+    employeesTable.where({
         ID: callerid
     }).read({
         success: function(results) {            
