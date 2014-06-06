@@ -19,7 +19,7 @@ exports.get = function(request, response) {
                 });
             } else {
                 console.log('Unknown caller id \'%s\'', callerid);
-                resp.say({voice:'woman'}, 'ahoy hoy! Testing Twilio and node.js');
+                resp.hangup();
             }
             
             response.send(200, resp.toString());
