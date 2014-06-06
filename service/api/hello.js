@@ -8,10 +8,10 @@ exports.get = function(request, response) {
     var employeesTable = request.service.tables.getTable('employees');
     var callerid = request.param('From'); 
     
-    //employeesTable.Where({
-    //    ID: callerid
-    //}).read({
-    //    success: function(results) {            
+    employeesTable.Where({
+        ID: callerid
+    }).read({
+        success: function(results) {            
     //        if (results.length > 0) {                
                 resp.say('Thank you for calling the Auto Stuff employee schedule.');
     //            resp.gather({ timeout:30, action: '' }, function() {
@@ -23,8 +23,12 @@ exports.get = function(request, response) {
     //        }
             
             response.send(200, resp.toString());
-    //    }
-    //});
+        },
+        error: function (err) {
+            console.error(err);
+            response.send(404, err);
+        }
+    });
 
     //response.send(200, "OK");
 };
