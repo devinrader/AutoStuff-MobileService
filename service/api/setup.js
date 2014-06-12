@@ -2,7 +2,7 @@
 
     var employeesTable = request.service.tables.getTable('employees');
 
-    employeesTable.insert({employeeid: 23473, phoneNumber: '+19102369959'}, {
+    employeesTable.insert({ employeeid: 23473, phoneNumber: '[REPLACE_WITH_A_VALID_PHONE_NUMBER]' }, {
         success: function (results) {
             response.send(200, "OK");
         },

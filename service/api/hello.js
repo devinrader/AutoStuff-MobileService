@@ -2,7 +2,6 @@ var twilio = require('twilio');
 
 exports.get = function (request, response) {
     
-    //1. Set content header and create TwiMLResponse
     response.set('content-type', 'text/xml');
     var resp = new twilio.TwimlResponse();
 
@@ -15,17 +14,15 @@ exports.get = function (request, response) {
         success: function(results) {            
             if (results.length > 0) {                
 
-                //2. Say greeting and prompt for input
-                resp.say('thanks for calling the Auto Stuff schedule hotline.');
+                resp.say('thanks for calling the auto stuff employee schedule hotline');
+                
                 resp.gather({ method: 'POST' }, function () {
-                    resp.say('please enter your employee i d');
+                    resp.say('enter your employee i d');
                 });
 
             } else {
                 console.log('Unknown caller id \'%s\'', callerid);
-                //3. Hangup
                 resp.hangup();
-
             }
             
             response.send(200, resp.toString());
@@ -39,8 +36,7 @@ exports.get = function (request, response) {
 
 exports.post = function (request, response) {
 
-    //1. Set content header and create TwiMLResponse
-    response.set('content-type', 'text/xml');
+    response.set('Content-Type', 'text/xml');
     var resp = new twilio.TwimlResponse();
 
     var employeesTable = request.service.tables.getTable('employees');
@@ -55,13 +51,12 @@ exports.post = function (request, response) {
         success: function (results) {
             if (results.length > 0) {
 
-                //2. Employee found response
-                resp.say('your next shift starts at 8 a m and ends at 5 p m on monday');
+                resp.say('Your next shift begins on Tuesday June 11 at 8 a m and ends at 5 p m');
 
             } else {
 
-                //3. Employee NOT found response
-                resp.say('sorry.  I do not know that i d');
+                resp.say('I\'m sorry.  I could not find that I D');
+                resp.hangup();
             }
 
             response.send(200, resp.toString());
