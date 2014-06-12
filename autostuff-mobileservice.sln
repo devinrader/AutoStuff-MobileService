@@ -5,6 +5,11 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "autostuff-mobileservice", "autostuff-mobileservice.njsproj", "{F8DD96A1-2C7B-4845-A4C9-E41A2B659072}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{551D9C9E-7A0B-4235-A597-FF89113038FC}"
+	ProjectSection(SolutionItems) = preProject
+		snippets.txt = snippets.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
